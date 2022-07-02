@@ -67,23 +67,24 @@ export class CompanyService {
                 else{
                     ele.perGained = 0;
                 }
-                let startDate = new Date(ele.startDate)
-                let endDate = new Date(ele.endDate);
+                let startDate= new Date(+ele.startDate)
+                let endDate= new Date(+ele.endDate);
                 let curDate = new Date();
                 if(startDate < curDate){
                     ele.status = 'launched'
+                    ele.launched = 1;
                 }
                 if(endDate < curDate){
-                    ele.status = 'end'
+                    ele.status = 'end';
+                    ele.launched = -1;
                 }
                 if(startDate> curDate){
                     ele.status = 'coming soon';
+                    const diffInMs   = +startDate - +curDate;
+                    const diffInDays = parseInt((diffInMs / (1000 * 60 * 60 * 24)).toString());
+                    ele.launchDays = diffInDays ? diffInDays + "days" : "less than a day"
+                    ele.launched = 0;
                 }
-
-                const diffInMs   = +(new Date(+endDate)) - +(new Date(+startDate))
-                const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
-                console.log(diffInDays)
-
             });
 
 
