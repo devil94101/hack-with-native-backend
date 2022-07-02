@@ -55,7 +55,9 @@ export class CompanyService {
     async getAllCompanyDetails(){
         try{
             let data = await this.dbHelper.getData(CompanyCollection);
-
+            if(data.status === 'error'){
+                return data;
+            }
             data.forEach(ele => {
                 if(ele.goalAmt && ele.raisedYet && ele.goalAmt != 0){
                     
