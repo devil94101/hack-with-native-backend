@@ -50,7 +50,7 @@ async function bootstrap() {
 
   app.enableCors();
 
-  await app.listen(port);
+  await app.listen(port,'0.0.0.0');
   const url = await app.getUrl();
   console.log("running on ", url);
 }
