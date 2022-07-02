@@ -55,9 +55,42 @@ export class CompanyService {
     async getAllCompanyDetails(){
         try{
             let data = await this.dbHelper.getData(CompanyCollection);
+
+            data.forEach(ele => {
+                if(ele.goalAmt && ele.raisedYet && ele.goalAmt != 0){
+                    
+                    let x = (+ele.raisedYet)/(+ele.goalAmt);
+                  
+                    let per = x * 100;
+                    ele.perGained = per.toFixed(2)
+                }
+                else{
+                    ele.perGained = 0;
+                }
+                let startDate = new Date(ele.startDate)
+                let endDate = new Date(ele.endDate);
+                let curDate = new Date();
+                if(startDate < curDate){
+                    ele.status = 'launched'
+                }
+                if(endDate < curDate){
+                    ele.status = 'end'
+                }
+                if(startDate> curDate){
+                    ele.status = 'coming soon';
+                }
+
+                const diffInMs   = +(new Date(+endDate)) - +(new Date(+startDate))
+                const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+                console.log(diffInDays)
+
+            });
+
+
             return {
                 status:'success',
-                data
+                data,
+                total:data.length
             }
         }
         catch(err){
