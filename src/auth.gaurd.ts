@@ -21,7 +21,7 @@ import {
   
       const request = context.switchToHttp().getRequest();
   
-      return true;
+      // return true;
       if (this.constant.skipAuth().includes(trimCharsStart('/', request.routerPath))) {
         // profiler.end();
         return true;

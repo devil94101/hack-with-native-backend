@@ -8,7 +8,7 @@ export class ConstantsService {
     }
 
     skipAuth(){
-        let skip = ['user/auth/signupByEmail','user/auth/googleSignIn','user/card/getCard','user/card/vcard'];
+        let skip = ['user/auth/signupByEmail','user/auth/googleSignIn','user/company/get','user/company/all'];
         return skip;
     }
     

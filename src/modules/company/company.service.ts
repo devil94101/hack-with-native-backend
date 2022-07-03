@@ -85,7 +85,7 @@ export class CompanyService {
                     const diffInMs   = +startDate - +curDate;
                     const diffInDays = parseInt((diffInMs / (1000 * 60 * 60 * 24)).toString());
                     ele.launchDays = diffInDays ? diffInDays + "days" : "less than a day"
-                    ele.launched = 0;
+                    
                 }
             });
 
