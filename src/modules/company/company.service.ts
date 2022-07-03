@@ -77,21 +77,25 @@ export class CompanyService {
                     ele.launched = 1;
                     const diffInMs   = +endDate - +curDate;
                     const diffInDays = parseInt((diffInMs / (1000 * 60 * 60 * 24)).toString());
-                    ele.launchDays = diffInDays ? diffInDays + "days" : "less than a day"
+                    ele.launchDays = diffInDays ? diffInDays + " days" : "less than a day"
                 }
                 if(endDate < curDate){
                     ele.status = 'end';
                     ele.launched = -1;
                     const diffInMs   = +curDate - +endDate;
+                    console.log(diffInMs)
                     const diffInDays = parseInt((diffInMs / (1000 * 60 * 60 * 24)).toString());
-                    ele.launchDays = diffInDays ? diffInDays + "days back" : "1 day back"
+                    ele.launchDays = diffInDays ? diffInDays + " days back" : "1 day back"
                 }
                 if(startDate> curDate){
                     ele.status = 'coming soon';
                     const diffInMs   = +startDate - +curDate;
                     const diffInDays = parseInt((diffInMs / (1000 * 60 * 60 * 24)).toString());
-                    ele.launchDays = diffInDays ? diffInDays + "days" : "less than a day"
+                    ele.launchDays = diffInDays ? diffInDays + " days" : "less than a day"
                     
+                }
+                if(ele.perGained >= 100){
+                    ele.successFullyFunded = 1;
                 }
             });
 

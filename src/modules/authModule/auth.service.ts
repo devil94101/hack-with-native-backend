@@ -50,7 +50,6 @@ export class AuthService {
                 displayName: data.name,
                 investments: []
             })
-            let token = await
 
             return{
                 status:'success',
