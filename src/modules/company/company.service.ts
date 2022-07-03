@@ -75,10 +75,16 @@ export class CompanyService {
                 if(startDate < curDate){
                     ele.status = 'launched'
                     ele.launched = 1;
+                    const diffInMs   = +endDate - +curDate;
+                    const diffInDays = parseInt((diffInMs / (1000 * 60 * 60 * 24)).toString());
+                    ele.launchDays = diffInDays ? diffInDays + "days" : "less than a day"
                 }
                 if(endDate < curDate){
                     ele.status = 'end';
                     ele.launched = -1;
+                    const diffInMs   = +curDate - +endDate;
+                    const diffInDays = parseInt((diffInMs / (1000 * 60 * 60 * 24)).toString());
+                    ele.launchDays = diffInDays ? diffInDays + "days back" : "1 day back"
                 }
                 if(startDate> curDate){
                     ele.status = 'coming soon';
